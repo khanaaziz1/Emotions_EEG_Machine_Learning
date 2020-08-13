@@ -1,15 +1,15 @@
 import numpy as np
 import pandas as pd
-#import seaborn as sns
+
 from sklearn.preprocessing import StandardScaler
 import tensorflow as tf
 from keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Dense, Dropout
-#from tensorflow.keras.layers import Embedding
+
 from tensorflow.keras.layers import LSTM
-#from keras.optimizers import SGD
+
 from sklearn.metrics import accuracy_score
 import pickle
 
@@ -24,7 +24,7 @@ encode = ({'NEUTRAL': 0, 'POSITIVE': 1, 'NEGATIVE': 2} )
 df_encoded = df.replace(encode)
 
 df_encoded['label'].unique()
-#df_encoded.head()
+
 x=df_encoded.drop(["label"]  ,axis=1)
 
 y = df_encoded.loc[:,'label'].values
@@ -53,7 +53,6 @@ model.summary()
 
 history = model.fit(x_train, y_train, epochs = 100, validation_data= (x_test, y_test))
 score, acc = model.evaluate(x_test, y_test)
-
 
 pred = model.predict(x_test)
 predict_classes = np.argmax(pred,axis=1)
